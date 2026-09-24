@@ -1,0 +1,186 @@
+ * {
+     box-sizing: border-box;
+     margin: 0;
+     padding: 0;
+ }
+ 
+ body {
+     background-color: #05050a;
+     color: #fff;
+     font-family: 'Orbitron', sans-serif;
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     min-height: 100vh;
+     overflow: hidden;
+     /* Fondo con sutil brillo de rejilla futurista */
+     background-image: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+     background-size: 100% 4px, 6px 100%;
+ }
+ 
+ h1 {
+     font-size: 2.2rem;
+     margin-bottom: 10px;
+     color: #00f3ff;
+     text-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff, 0 0 40px #00f3ff;
+     letter-spacing: 3px;
+ }
+ 
+ .container {
+     display: flex;
+     gap: 25px;
+     background: rgba(10, 10, 25, 0.7);
+     padding: 25px;
+     border-radius: 15px;
+     border: 2px solid #ff007f;
+     box-shadow: 0 0 20px #ff007f, inset 0 0 15px rgba(255, 0, 127, 0.5);
+ }
+ 
+ .game-board {
+     width: 300px;
+     height: 600px;
+     background-color: #020205;
+     border: 2px solid #00f3ff;
+     box-shadow: 0 0 15px #00f3ff, inset 0 0 15px rgba(0, 243, 255, 0.3);
+     display: grid;
+     grid-template-rows: repeat(20, 1fr);
+     grid-template-columns: repeat(10, 1fr);
+     position: relative;
+ }
+ 
+ .side-panel {
+     display: flex;
+     flex-direction: column;
+     justify-content: space-between;
+     width: 150px;
+ }
+ 
+ .panel-box {
+     background: rgba(0, 0, 0, 0.5);
+     border: 1px solid #7928ca;
+     box-shadow: 0 0 10px #7928ca;
+     padding: 15px;
+     border-radius: 8px;
+     text-align: center;
+ }
+ 
+ .panel-box h2 {
+     font-size: 0.9rem;
+     color: #b537f2;
+     margin-bottom: 10px;
+     text-shadow: 0 0 5px #b537f2;
+ }
+ 
+ .panel-box p {
+     font-size: 1.4rem;
+     font-weight: 700;
+     color: #fff;
+     text-shadow: 0 0 8px #fff;
+ }
+ /* Lienzo de la Siguiente Pieza */
+ 
+ #next-canvas {
+     width: 90px;
+     height: 90px;
+     background: #020205;
+     border: 1px solid #00f3ff;
+     box-shadow: 0 0 8px #00f3ff;
+     margin: 0 auto;
+     display: grid;
+     grid-template-rows: repeat(4, 1fr);
+     grid-template-columns: repeat(4, 1fr);
+ }
+ /* Celdas del tablero y piezas */
+ 
+ .cell {
+     border: 1px solid rgba(255, 255, 255, 0.05);
+ }
+ /* Bloques de colores Neón */
+ 
+ .block-I {
+     background-color: #00f3ff;
+     box-shadow: inset 0 0 8px #fff, 0 0 10px #00f3ff;
+ }
+ 
+ .block-J {
+     background-color: #0044ff;
+     box-shadow: inset 0 0 8px #fff, 0 0 10px #0044ff;
+ }
+ 
+ .block-L {
+     background-color: #ff7700;
+     box-shadow: inset 0 0 8px #fff, 0 0 10px #ff7700;
+ }
+ 
+ .block-O {
+     background-color: #ffee00;
+     box-shadow: inset 0 0 8px #fff, 0 0 10px #ffee00;
+ }
+ 
+ .block-S {
+     background-color: #00ff66;
+     box-shadow: inset 0 0 8px #fff, 0 0 10px #00ff66;
+ }
+ 
+ .block-T {
+     background-color: #b537f2;
+     box-shadow: inset 0 0 8px #fff, 0 0 10px #b537f2;
+ }
+ 
+ .block-Z {
+     background-color: #ff0055;
+     box-shadow: inset 0 0 8px #fff, 0 0 10px #ff0055;
+ }
+ 
+ .btn-neon {
+     background: transparent;
+     color: #00f3ff;
+     border: 2px solid #00f3ff;
+     padding: 10px;
+     font-family: 'Orbitron', sans-serif;
+     font-weight: 700;
+     border-radius: 5px;
+     cursor: pointer;
+     box-shadow: 0 0 10px #00f3ff;
+     transition: all 0.3s ease;
+     text-transform: uppercase;
+     font-size: 0.8rem;
+ }
+ 
+ .btn-neon:hover {
+     background: #00f3ff;
+     color: #000;
+     box-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff;
+ }
+ /* Pantalla de Game Over superpuesta */
+ 
+ #game-over {
+     position: absolute;
+     top: 0;
+     left: 0;
+     width: 100%;
+     height: 100%;
+     background: rgba(5, 5, 10, 0.85);
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     display: none;
+     z-index: 10;
+ }
+ 
+ #game-over h2 {
+     color: #ff0055;
+     font-size: 2rem;
+     text-shadow: 0 0 15px #ff0055, 0 0 30px #ff0055;
+     margin-bottom: 20px;
+ }
+ 
+ .controls-hint {
+     margin-top: 15px;
+     font-size: 0.7rem;
+     color: #888;
+     text-align: center;
+     line-height: 1.4;
+ }
