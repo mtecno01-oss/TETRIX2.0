@@ -3,7 +3,8 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#05050a">
     <title>Cyber Tetris Neon</title>
     <link rel="stylesheet" href="Style.css">
 </head>
@@ -12,18 +13,55 @@
 
     <h1>CYBER TETRIS</h1>
 
-    <div class="container">
-        <!-- Tablero principal -->
-        <div style="position: relative;">
-            <div class="game-board" id="board"></div>
-            <div id="game-over">
-                <h2>SYSTEM FAIL</h2>
-                <button class="btn-neon" onclick="resetGame()">RELOAD</button>
+    <main class="container">
+
+        <div class="game-area">
+
+            <div class="board-wrap">
+                <div class="game-board" id="board"></div>
+
+                <div id="pause-overlay" class="pause-overlay">
+                    <h2>PAUSED</h2>
+                    <p>Presioná CONTINUAR para seguir</p>
+                </div>
+
+                <div id="game-over">
+                    <h2>SYSTEM FAIL</h2>
+                    <button class="btn-neon" onclick="restartGame()">RESTART</button>
+                </div>
+            </div>
+
+            <!-- CONTROLES TÁCTILES -->
+            <div class="touch-controls" aria-label="Controles del juego">
+
+                <div class="control-row">
+                    <button class="control-btn control-wide" id="rotate-btn" aria-label="Rotar">↻</button>
+                </div>
+
+                <div class="control-row">
+                    <button class="control-btn" id="left-btn" aria-label="Mover izquierda">←</button>
+                    <button class="control-btn" id="down-btn" aria-label="Bajar">↓</button>
+                    <button class="control-btn" id="right-btn" aria-label="Mover derecha">→</button>
+                </div>
+
+                <div class="control-row">
+                    <button class="control-btn control-wide" id="hard-btn" aria-label="Caída rápida">
+                        ⤓ CAÍDA
+                    </button>
+                </div>
+
+                <div class="control-row">
+                    <button class="btn-neon pause-touch-btn" id="pause-touch-btn">
+                        ⏸ PAUSA
+                    </button>
+                </div>
+
             </div>
         </div>
 
-        <!-- Panel lateral -->
-        <div class="side-panel">
+        <!-- PANEL LATERAL -->
+        <aside class="side-panel">
+
             <div class="panel-box">
                 <h2>NEXT</h2>
                 <div id="next-canvas"></div>
@@ -39,14 +77,24 @@
                 <p id="level">1</p>
             </div>
 
-            <button class="btn-neon" id="start-btn" onclick="startGame()">START</button>
-        </div>
-    </div>
+            <button class="btn-neon" id="start-btn" onclick="startGame()">
+                START
+            </button>
+
+            <button class="btn-neon pause-side-btn" id="pause-btn" onclick="togglePause()">
+                ⏸ PAUSA
+            </button>
+
+        </aside>
+
+    </main>
 
     <div class="controls-hint">
-        CONTROLS: ← → MOVE | ↑ ROTATE | ↓ SOFT DROP | SPACE HARD DROP
+        PC: ← → MOVER | ↑ ROTAR | ↓ BAJAR | ESPACIO CAÍDA | P PAUSA
     </div>
+
     <script src="scripts.js"></script>
+
 </body>
 
 </html>
