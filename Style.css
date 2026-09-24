@@ -1,186 +1,408 @@
- * {
-     box-sizing: border-box;
-     margin: 0;
-     padding: 0;
- }
- 
- body {
-     background-color: #05050a;
-     color: #fff;
-     font-family: 'Orbitron', sans-serif;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-     min-height: 100vh;
-     overflow: hidden;
-     /* Fondo con sutil brillo de rejilla futurista */
-     background-image: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-     background-size: 100% 4px, 6px 100%;
- }
- 
- h1 {
-     font-size: 2.2rem;
-     margin-bottom: 10px;
-     color: #00f3ff;
-     text-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff, 0 0 40px #00f3ff;
-     letter-spacing: 3px;
- }
- 
- .container {
-     display: flex;
-     gap: 25px;
-     background: rgba(10, 10, 25, 0.7);
-     padding: 25px;
-     border-radius: 15px;
-     border: 2px solid #ff007f;
-     box-shadow: 0 0 20px #ff007f, inset 0 0 15px rgba(255, 0, 127, 0.5);
- }
- 
- .game-board {
-     width: 300px;
-     height: 600px;
-     background-color: #020205;
-     border: 2px solid #00f3ff;
-     box-shadow: 0 0 15px #00f3ff, inset 0 0 15px rgba(0, 243, 255, 0.3);
-     display: grid;
-     grid-template-rows: repeat(20, 1fr);
-     grid-template-columns: repeat(10, 1fr);
-     position: relative;
- }
- 
- .side-panel {
-     display: flex;
-     flex-direction: column;
-     justify-content: space-between;
-     width: 150px;
- }
- 
- .panel-box {
-     background: rgba(0, 0, 0, 0.5);
-     border: 1px solid #7928ca;
-     box-shadow: 0 0 10px #7928ca;
-     padding: 15px;
-     border-radius: 8px;
-     text-align: center;
- }
- 
- .panel-box h2 {
-     font-size: 0.9rem;
-     color: #b537f2;
-     margin-bottom: 10px;
-     text-shadow: 0 0 5px #b537f2;
- }
- 
- .panel-box p {
-     font-size: 1.4rem;
-     font-weight: 700;
-     color: #fff;
-     text-shadow: 0 0 8px #fff;
- }
- /* Lienzo de la Siguiente Pieza */
- 
- #next-canvas {
-     width: 90px;
-     height: 90px;
-     background: #020205;
-     border: 1px solid #00f3ff;
-     box-shadow: 0 0 8px #00f3ff;
-     margin: 0 auto;
-     display: grid;
-     grid-template-rows: repeat(4, 1fr);
-     grid-template-columns: repeat(4, 1fr);
- }
- /* Celdas del tablero y piezas */
- 
- .cell {
-     border: 1px solid rgba(255, 255, 255, 0.05);
- }
- /* Bloques de colores Neón */
- 
- .block-I {
-     background-color: #00f3ff;
-     box-shadow: inset 0 0 8px #fff, 0 0 10px #00f3ff;
- }
- 
- .block-J {
-     background-color: #0044ff;
-     box-shadow: inset 0 0 8px #fff, 0 0 10px #0044ff;
- }
- 
- .block-L {
-     background-color: #ff7700;
-     box-shadow: inset 0 0 8px #fff, 0 0 10px #ff7700;
- }
- 
- .block-O {
-     background-color: #ffee00;
-     box-shadow: inset 0 0 8px #fff, 0 0 10px #ffee00;
- }
- 
- .block-S {
-     background-color: #00ff66;
-     box-shadow: inset 0 0 8px #fff, 0 0 10px #00ff66;
- }
- 
- .block-T {
-     background-color: #b537f2;
-     box-shadow: inset 0 0 8px #fff, 0 0 10px #b537f2;
- }
- 
- .block-Z {
-     background-color: #ff0055;
-     box-shadow: inset 0 0 8px #fff, 0 0 10px #ff0055;
- }
- 
- .btn-neon {
-     background: transparent;
-     color: #00f3ff;
-     border: 2px solid #00f3ff;
-     padding: 10px;
-     font-family: 'Orbitron', sans-serif;
-     font-weight: 700;
-     border-radius: 5px;
-     cursor: pointer;
-     box-shadow: 0 0 10px #00f3ff;
-     transition: all 0.3s ease;
-     text-transform: uppercase;
-     font-size: 0.8rem;
- }
- 
- .btn-neon:hover {
-     background: #00f3ff;
-     color: #000;
-     box-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff;
- }
- /* Pantalla de Game Over superpuesta */
- 
- #game-over {
-     position: absolute;
-     top: 0;
-     left: 0;
-     width: 100%;
-     height: 100%;
-     background: rgba(5, 5, 10, 0.85);
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     justify-content: center;
-     display: none;
-     z-index: 10;
- }
- 
- #game-over h2 {
-     color: #ff0055;
-     font-size: 2rem;
-     text-shadow: 0 0 15px #ff0055, 0 0 30px #ff0055;
-     margin-bottom: 20px;
- }
- 
- .controls-hint {
-     margin-top: 15px;
-     font-size: 0.7rem;
-     color: #888;
-     text-align: center;
-     line-height: 1.4;
- }
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #05050a;
+    color: #fff;
+    font-family: 'Orbitron', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    padding: 10px;
+
+    background-image:
+        linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%),
+        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    background-size: 100% 4px, 6px 100%;
+}
+
+h1 {
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    margin-bottom: 10px;
+    color: #00f3ff;
+    text-shadow: 0 0 10px #00f3ff, 0 0 20px #00f3ff, 0 0 40px #00f3ff;
+    letter-spacing: 3px;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    gap: 25px;
+    background: rgba(10, 10, 25, 0.7);
+    padding: 20px;
+    border-radius: 15px;
+    border: 2px solid #ff007f;
+    box-shadow: 0 0 20px #ff007f, inset 0 0 15px rgba(255, 0, 127, 0.5);
+    max-width: 100%;
+}
+
+.game-area {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.board-wrap {
+    position: relative;
+}
+
+.game-board {
+    width: 300px;
+    height: 600px;
+    max-width: 78vw;
+    max-height: 58vh;
+    aspect-ratio: 1 / 2;
+
+    background-color: #020205;
+    border: 2px solid #00f3ff;
+    box-shadow: 0 0 15px #00f3ff, inset 0 0 15px rgba(0, 243, 255, 0.3);
+    display: grid;
+    grid-template-rows: repeat(20, 1fr);
+    grid-template-columns: repeat(10, 1fr);
+    position: relative;
+}
+
+.side-panel {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 150px;
+    gap: 12px;
+}
+
+.panel-box {
+    background: rgba(0, 0, 0, 0.5);
+    border: 1px solid #7928ca;
+    box-shadow: 0 0 10px #7928ca;
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.panel-box h2 {
+    font-size: 0.9rem;
+    color: #b537f2;
+    margin-bottom: 10px;
+    text-shadow: 0 0 5px #b537f2;
+}
+
+.panel-box p {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #fff;
+    text-shadow: 0 0 8px #fff;
+}
+
+#next-canvas {
+    width: 90px;
+    height: 90px;
+    background: #020205;
+    border: 1px solid #00f3ff;
+    box-shadow: 0 0 8px #00f3ff;
+    margin: 0 auto;
+    display: grid;
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.cell {
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.block-I {
+    background-color: #00f3ff;
+    box-shadow: inset 0 0 8px #fff, 0 0 10px #00f3ff;
+}
+
+.block-J {
+    background-color: #0044ff;
+    box-shadow: inset 0 0 8px #fff, 0 0 10px #0044ff;
+}
+
+.block-L {
+    background-color: #ff7700;
+    box-shadow: inset 0 0 8px #fff, 0 0 10px #ff7700;
+}
+
+.block-O {
+    background-color: #ffee00;
+    box-shadow: inset 0 0 8px #fff, 0 0 10px #ffee00;
+}
+
+.block-S {
+    background-color: #00ff66;
+    box-shadow: inset 0 0 8px #fff, 0 0 10px #00ff66;
+}
+
+.block-T {
+    background-color: #b537f2;
+    box-shadow: inset 0 0 8px #fff, 0 0 10px #b537f2;
+}
+
+.block-Z {
+    background-color: #ff0055;
+    box-shadow: inset 0 0 8px #fff, 0 0 10px #ff0055;
+}
+
+.btn-neon {
+    background: transparent;
+    color: #00f3ff;
+    border: 2px solid #00f3ff;
+    padding: 10px;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 0 10px #00f3ff;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    touch-action: manipulation;
+}
+
+.btn-neon:hover {
+    background: #00f3ff;
+    color: #000;
+    box-shadow: 0 0 20px #00f3ff, 0 0 40px #00f3ff;
+}
+
+#game-over {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 5, 10, 0.85);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+
+#game-over h2 {
+    color: #ff0055;
+    font-size: 2rem;
+    text-shadow: 0 0 15px #ff0055, 0 0 30px #ff0055;
+    margin-bottom: 20px;
+}
+
+.pause-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(5, 5, 10, 0.82);
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    z-index: 9;
+}
+
+.pause-overlay h2 {
+    color: #00f3ff;
+    font-size: 1.8rem;
+    text-shadow: 0 0 15px #00f3ff;
+    margin-bottom: 10px;
+}
+
+.pause-overlay p {
+    color: #fff;
+    font-size: 0.75rem;
+    padding: 0 15px;
+}
+
+.touch-controls {
+    display: none;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 12px;
+    gap: 8px;
+}
+
+.control-row {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+}
+
+.control-btn {
+    width: 65px;
+    height: 48px;
+    background: rgba(0, 0, 0, 0.65);
+    color: #00f3ff;
+    border: 2px solid #00f3ff;
+    border-radius: 8px;
+    box-shadow: 0 0 10px #00f3ff;
+    font-size: 1.4rem;
+    font-family: 'Orbitron', sans-serif;
+    font-weight: 700;
+    cursor: pointer;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.control-btn:active {
+    background: #00f3ff;
+    color: #000;
+    transform: scale(0.94);
+}
+
+.control-wide {
+    width: 138px;
+}
+
+.pause-touch-btn {
+    width: 138px;
+}
+
+.pause-side-btn {
+    display: block;
+}
+
+.controls-hint {
+    margin-top: 15px;
+    font-size: 0.7rem;
+    color: #888;
+    text-align: center;
+    line-height: 1.4;
+}
+
+/* TABLET / CELULAR */
+@media (max-width: 700px) {
+    body {
+        justify-content: flex-start;
+        padding-top: 8px;
+    }
+
+    .container {
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 12px;
+        width: min(96vw, 430px);
+    }
+
+    .game-board {
+        width: min(78vw, 300px);
+        height: auto;
+        max-height: none;
+        aspect-ratio: 1 / 2;
+    }
+
+    .side-panel {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+    }
+
+    .panel-box {
+        padding: 8px 4px;
+    }
+
+    .panel-box h2 {
+        font-size: 0.7rem;
+        margin-bottom: 5px;
+    }
+
+    .panel-box p {
+        font-size: 1rem;
+    }
+
+    .side-panel #start-btn,
+    .side-panel .pause-side-btn {
+        grid-column: span 3;
+    }
+
+    .touch-controls {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .controls-hint {
+        font-size: 0.6rem;
+        margin-top: 8px;
+    }
+}
+
+/* CELULAR PEQUEÑO */
+@media (max-width: 380px) {
+    h1 {
+        font-size: 1.35rem;
+        margin-bottom: 5px;
+    }
+
+    .container {
+        padding: 8px;
+    }
+
+    .game-board {
+        width: min(75vw, 270px);
+    }
+
+    .control-btn {
+        width: 58px;
+        height: 44px;
+    }
+
+    .control-wide,
+    .pause-touch-btn {
+        width: 124px;
+    }
+}
+
+/* CELULAR EN HORIZONTAL */
+@media (max-height: 600px) and (orientation: landscape) {
+    body {
+        justify-content: flex-start;
+    }
+
+    h1 {
+        font-size: 1.3rem;
+        margin-bottom: 4px;
+    }
+
+    .container {
+        flex-direction: row;
+        padding: 8px;
+        gap: 10px;
+    }
+
+    .game-board {
+        width: min(45vh, 240px);
+        height: min(90vh, 480px);
+    }
+
+    .touch-controls {
+        display: flex;
+        flex-direction: column;
+        width: 150px;
+        margin-top: 0;
+        justify-content: center;
+    }
+
+    .side-panel {
+        width: 120px;
+    }
+
+    .controls-hint {
+        display: none;
+    }
+}
+
+/* DISPOSITIVOS CON PANTALLA TÁCTIL */
+@media (pointer: coarse) {
+    .touch-controls {
+        display: flex;
+        flex-direction: column;
+    }
+}
