@@ -338,16 +338,33 @@ h1 {
         font-size: 1.25rem;
     }
 
-    .control-wide,
-    .pause-touch-btn {
-        width: 125px;
+    .action-row{
+         width: 100%;
+         display: flex;
+         justify-content: center;
+         gap: 8px;
     }
 
+    .control-wide,
+    .pause-touch-btn{
+        width: 125px;
+        height: 48px;
+    }
+    .pause-side-btn{
+        display: none;
+    }
+ }
     /* =========================
        PANEL INFORMACIÓN
     ========================= */
-
+    .game-area{
+        order: 2;
+        width: 100%;
+    }
+    
     .side-panel {
+        order: 1;
+        
         width: 100%;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -410,7 +427,11 @@ h1 {
 
     .control-wide,
     .pause-touch-btn {
-        width: 124px;
+        width: 120px;
+        height: 46px;
+    }
+    .action-row{
+        gap: 6px;
     }
 }
 
