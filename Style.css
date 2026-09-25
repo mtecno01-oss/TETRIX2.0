@@ -276,61 +276,115 @@ h1 {
     line-height: 1.4;
 }
 
-/* TABLET / CELULAR */
+/* =========================
+   CELULAR / MODO VERTICAL
+========================= */
+
 @media (max-width: 700px) {
+
     body {
         justify-content: flex-start;
-        padding-top: 8px;
+        min-height: 100dvh;
+        padding: 5px 6px 10px;
+        overflow-x: hidden;
+    }
+
+    h1 {
+        font-size: clamp(1.3rem, 5vw, 1.7rem);
+        margin-bottom: 6px;
+        letter-spacing: 2px;
     }
 
     .container {
         flex-direction: column;
         align-items: center;
-        gap: 12px;
-        padding: 12px;
-        width: min(96vw, 430px);
+        gap: 8px;
+        padding: 8px;
+        width: min(96vw, 400px);
     }
 
+    /* =========================
+       TABLERO
+    ========================= */
+
     .game-board {
-        width: min(78vw, 300px);
+        width: min(64vw, 245px);
         height: auto;
-        max-height: none;
         aspect-ratio: 1 / 2;
+        max-width: 245px;
+        max-height: none;
     }
+
+    /* =========================
+       CONTROLES TÁCTILES
+    ========================= */
+
+    .touch-controls {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        max-width: 260px;
+        margin-top: 5px;
+        gap: 6px;
+    }
+
+    .control-row {
+        gap: 6px;
+    }
+
+    .control-btn {
+        width: 58px;
+        height: 43px;
+        font-size: 1.25rem;
+    }
+
+    .control-wide,
+    .pause-touch-btn {
+        width: 125px;
+    }
+
+    /* =========================
+       PANEL INFORMACIÓN
+    ========================= */
 
     .side-panel {
         width: 100%;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
-        gap: 8px;
+        gap: 6px;
     }
 
     .panel-box {
-        padding: 8px 4px;
+        padding: 6px 3px;
     }
 
     .panel-box h2 {
-        font-size: 0.7rem;
-        margin-bottom: 5px;
+        font-size: 0.65rem;
+        margin-bottom: 4px;
     }
 
     .panel-box p {
-        font-size: 1rem;
+        font-size: 0.95rem;
+    }
+
+    #next-canvas {
+        width: 65px;
+        height: 65px;
     }
 
     .side-panel #start-btn,
     .side-panel .pause-side-btn {
         grid-column: span 3;
+        padding: 7px;
     }
 
-    .touch-controls {
-        display: flex;
-        flex-direction: column;
-    }
+    /* =========================
+       TEXTO CONTROLES PC
+    ========================= */
 
     .controls-hint {
-        font-size: 0.6rem;
-        margin-top: 8px;
+        font-size: 0.55rem;
+        margin-top: 5px;
     }
 }
 
